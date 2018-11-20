@@ -106,6 +106,8 @@
     </FrameLayout>
 
     <FrameLayout
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -134,4 +136,10 @@
             android:textSize="16sp" />
 
     </FrameLayout>
+
+    <View
+        android:layout_above="@+id/bottom_toolbar"
+        android:background="@drawable/shadow_bottom_to_top"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"/>
 </RelativeLayout>

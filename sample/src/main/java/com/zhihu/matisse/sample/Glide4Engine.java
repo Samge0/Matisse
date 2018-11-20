@@ -22,6 +22,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.zhihu.matisse.engine.ImageEngine;
 
@@ -39,7 +42,7 @@ public class Glide4Engine implements ImageEngine {
                 .apply(new RequestOptions()
                         .override(resize, resize)
                         .placeholder(placeholder)
-                        .centerCrop())
+                        .transforms(new MultiTransformation(new CenterCrop(), new RoundedCorners(12))))
                 .into(imageView);
     }
 
@@ -52,7 +55,7 @@ public class Glide4Engine implements ImageEngine {
                 .apply(new RequestOptions()
                         .override(resize, resize)
                         .placeholder(placeholder)
-                        .centerCrop())
+                        .transforms(new MultiTransformation(new CenterCrop(), new RoundedCorners(12))))
                 .into(imageView);
     }
 
@@ -63,7 +66,8 @@ public class Glide4Engine implements ImageEngine {
                 .apply(new RequestOptions()
                         .override(resizeX, resizeY)
                         .priority(Priority.HIGH)
-                        .fitCenter())
+                        .fitCenter()
+                        .transforms(new MultiTransformation(new CenterCrop(), new RoundedCorners(12))))
                 .into(imageView);
     }
 

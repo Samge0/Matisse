@@ -84,6 +84,7 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
                                             .capture(true)
                                             .captureStrategy(
                                                     new CaptureStrategy(true, "com.zhihu.matisse.sample.fileprovider","test"))
+                                            .spanCount(4)
                                             .maxSelectable(9)
                                             .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
                                             .gridExpectedSize(
@@ -101,7 +102,7 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
 
                                                 }
                                             })
-                                            .originalEnable(true)
+                                            .originalEnable(false)
                                             .maxOriginalSize(10)
                                             .autoHideToolbarOnSingleTap(true)
                                             .setOnCheckedListener(new OnCheckedListener() {
@@ -117,7 +118,11 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
                                     Matisse.from(SampleActivity.this)
                                             .choose(MimeType.ofImage())
                                             .theme(R.style.Matisse_Dracula)
-                                            .countable(false)
+                                            .countable(true)
+                                            .capture(true)
+                                            .captureStrategy(
+                                                    new CaptureStrategy(true, "com.zhihu.matisse.sample.fileprovider","test"))
+                                            .spanCount(4)
                                             .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
                                             .maxSelectable(9)
                                             .originalEnable(true)
