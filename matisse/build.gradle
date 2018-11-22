@@ -55,7 +55,7 @@ publish {
     //bintrayUser = ''               // 登陆账号
     repoName = 'libs'               // Repositories名，默认为"maven"
     userOrg = 'samge720'            // bintray.com/用户名
-    groupId = 'com.zhihu.android'   // 项目的包名
+    groupId = 'com.samge.libs'   // 项目的包名
     artifactId = 'matisse_lib'          // 上传到bintray里的Package Name(这里填什么就显示什么)
     publishVersion = '0.5.2-beta4'  // 版本号(这里填什么就显示什么)
     desc = 'A well-designed local image selector for Android'
