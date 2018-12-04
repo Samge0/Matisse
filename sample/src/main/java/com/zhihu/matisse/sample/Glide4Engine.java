@@ -66,8 +66,7 @@ public class Glide4Engine implements ImageEngine {
                 .apply(new RequestOptions()
                         .override(resizeX, resizeY)
                         .priority(Priority.HIGH)
-                        .fitCenter()
-                        .transforms(new MultiTransformation(new CenterCrop(), new RoundedCorners(12))))
+                        .transforms(new MultiTransformation(new RoundedCorners(12))))
                 .into(imageView);
     }
 
@@ -79,7 +78,7 @@ public class Glide4Engine implements ImageEngine {
                 .apply(new RequestOptions()
                         .override(resizeX, resizeY)
                         .priority(Priority.HIGH)
-                        .fitCenter())
+                        .centerInside())
                 .into(imageView);
     }
 

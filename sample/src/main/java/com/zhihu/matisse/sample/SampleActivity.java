@@ -86,7 +86,7 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
                                                     new CaptureStrategy(true, "com.zhihu.matisse.sample.fileprovider","test"))
                                             .spanCount(4)
                                             .maxSelectable(9)
-                                            .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
+                                            .addFilter(new GifSizeFilter(320, 320, 10 * Filter.K * Filter.K))
                                             .gridExpectedSize(
                                                     getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
                                             .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)

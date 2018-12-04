@@ -16,3 +16,8 @@
 #   public *;
 #}
 -dontwarn com.squareup.okhttp.**
+
+#图片裁剪
+-dontwarn com.yalantis.ucrop**
+-keep class com.yalantis.ucrop** { *; }
+-keep interface com.yalantis.ucrop** { *; }
