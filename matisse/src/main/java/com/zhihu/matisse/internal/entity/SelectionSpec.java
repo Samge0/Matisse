@@ -56,6 +56,10 @@ public final class SelectionSpec {
     public int originalMaxSize;
     public OnCheckedListener onCheckedListener;
 
+    public boolean isSingle;
+    public int maxWidth;
+    public int maxHeight;
+
     private SelectionSpec() {
     }
 

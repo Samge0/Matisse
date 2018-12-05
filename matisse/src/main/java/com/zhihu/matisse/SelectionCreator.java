@@ -317,6 +317,21 @@ public final class SelectionCreator {
         return this;
     }
 
+    public SelectionCreator isSingle(boolean isSingle) {
+        mSelectionSpec.isSingle = isSingle;
+        return this;
+    }
+
+    public SelectionCreator maxWidth(int maxWidth) {
+        mSelectionSpec.maxWidth = maxWidth;
+        return this;
+    }
+
+    public SelectionCreator maxHeight(int maxHeight) {
+        mSelectionSpec.maxHeight = maxHeight;
+        return this;
+    }
+
     /**
      * Set listener for callback immediately when user select or unselect something.
      * <p>
