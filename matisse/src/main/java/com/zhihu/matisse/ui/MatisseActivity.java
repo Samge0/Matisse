@@ -32,7 +32,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -200,11 +199,45 @@ public class MatisseActivity extends AppCompatActivity implements
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(mSpec.isSingle){
+        if (resultCode != RESULT_OK && !mSpec.isSingle)
+            return;
+
+        if (requestCode == REQUEST_CODE_CAPTURE) {
+            if(mSpec.isSingle){
+                CropUtil.doCrop(this,mSpec,mMediaStoreCompat.getCurrentPhotoUri());
+            }else{
+                // Just pass the data back to previous calling Activity.
+                Uri contentUri = mMediaStoreCompat.getCurrentPhotoUri();
+                String path = mMediaStoreCompat.getCurrentPhotoPath();
+                ArrayList<Uri> selected = new ArrayList<>();
+                selected.add(contentUri);
+                ArrayList<String> selectedPath = new ArrayList<>();
+                selectedPath.add(path);
+                Intent result = new Intent();
+                result.putParcelableArrayListExtra(EXTRA_RESULT_SELECTION, selected);
+                result.putStringArrayListExtra(EXTRA_RESULT_SELECTION_PATH, selectedPath);
+                setResult(RESULT_OK, result);
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+                    MatisseActivity.this.revokeUriPermission(contentUri,
+                            Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                finish();
+            }
+        }else if(mSpec.isSingle){
             if (data != null && requestCode == UCrop.REQUEST_CROP) {
                 final Uri resultUri = UCrop.getOutput(data);
                 if(resultUri!=null && !TextUtils.isEmpty(resultUri.getPath())){
-                    Log.d("img",resultUri.getPath());
+
+                    Intent result = new Intent();
+                    ArrayList<Uri> selectedUris = new ArrayList<>();
+                    selectedUris.add(resultUri);
+                    result.putParcelableArrayListExtra(EXTRA_RESULT_SELECTION, selectedUris);
+                    ArrayList<String> selectedPaths = new ArrayList<>();
+                    selectedPaths.add(resultUri.getPath());
+                    result.putStringArrayListExtra(EXTRA_RESULT_SELECTION_PATH, selectedPaths);
+                    result.putExtra(EXTRA_RESULT_ORIGINAL_ENABLE, mOriginalEnable);
+                    setResult(RESULT_OK, result);
+                    finish();
+
                 }
 
             } else if (resultCode == UCrop.RESULT_ERROR) {
@@ -212,12 +245,8 @@ public class MatisseActivity extends AppCompatActivity implements
             }
 
             return;
-        }
 
-        if (resultCode != RESULT_OK)
-            return;
-
-        if (requestCode == REQUEST_CODE_PREVIEW) {
+        }else if (requestCode == REQUEST_CODE_PREVIEW) {
             Bundle resultBundle = data.getBundleExtra(BasePreviewActivity.EXTRA_RESULT_BUNDLE);
             ArrayList<Item> selected = resultBundle.getParcelableArrayList(SelectedItemCollection.STATE_SELECTION);
             mOriginalEnable = data.getBooleanExtra(BasePreviewActivity.EXTRA_RESULT_ORIGINAL_ENABLE, false);
@@ -246,26 +275,6 @@ public class MatisseActivity extends AppCompatActivity implements
                     ((MediaSelectionFragment) mediaSelectionFragment).refreshMediaGrid();
                 }
                 updateBottomToolbar();
-            }
-        } else if (requestCode == REQUEST_CODE_CAPTURE) {
-            if(mSpec.isSingle){
-                CropUtil.doCrop(this,mSpec,mMediaStoreCompat.getCurrentPhotoUri());
-            }else{
-                    // Just pass the data back to previous calling Activity.
-                Uri contentUri = mMediaStoreCompat.getCurrentPhotoUri();
-                String path = mMediaStoreCompat.getCurrentPhotoPath();
-                ArrayList<Uri> selected = new ArrayList<>();
-                selected.add(contentUri);
-                ArrayList<String> selectedPath = new ArrayList<>();
-                selectedPath.add(path);
-                Intent result = new Intent();
-                result.putParcelableArrayListExtra(EXTRA_RESULT_SELECTION, selected);
-                result.putStringArrayListExtra(EXTRA_RESULT_SELECTION_PATH, selectedPath);
-                setResult(RESULT_OK, result);
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
-                    MatisseActivity.this.revokeUriPermission(contentUri,
-                            Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                finish();
             }
         }
     }

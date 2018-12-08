@@ -130,6 +130,7 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
                                             .maxSelectable(9)
                                             .originalEnable(true)
                                             .maxOriginalSize(10)
+                                            .isSingle(false)
                                             .imageEngine(new PicassoEngine())
                                             .forResult(REQUEST_CODE_CHOOSE);
                                     break;

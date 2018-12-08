@@ -1,6 +1,7 @@
 package com.zhihu.matisse.internal.utils;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
 
@@ -33,8 +34,13 @@ public class CropUtil {
         Uri uri = Uri.fromFile(new File(dir, "nface_crop_"+System.currentTimeMillis() + ".jpg"));
         int width = mSpec.maxWidth == 0 ? 500 : mSpec.maxWidth;
         int height = mSpec.maxHeight == 0 ? 500 : mSpec.maxHeight;
+        UCrop.Options options=new UCrop.Options();
+        options.setHideBottomControls(true);
+        options.setToolbarColor(Color.BLACK);
+        options.setStatusBarColor(Color.BLACK);
+
         UCrop.of(selectedUri, uri)
-                .withOptions(new UCrop.Options())
+                .withOptions(options)
                 .withAspectRatio(width, height)
                 .withMaxResultSize(width, height)
                 .start(activity);
