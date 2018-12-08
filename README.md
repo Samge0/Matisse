@@ -21,10 +21,12 @@ Gradle:
 ```groovy
 repositories {
     jcenter()
+    maven { url "https://dl.bintray.com/samge720/libs" }
 }
 
 dependencies {
-    compile 'com.zhihu.android:matisse:$latest_version'
+    //compile 'com.zhihu.android:matisse:$latest_version'
+    compile 'com.samge.libs:matisse_lib:0.5.2-beta5'
 }
 ```
 
