@@ -57,6 +57,7 @@ public final class SelectionSpec {
     public OnCheckedListener onCheckedListener;
 
     public boolean isSingle;
+    public boolean onlyCamera;
     public int maxWidth;
     public int maxHeight;
 

@@ -332,6 +332,11 @@ public final class SelectionCreator {
         return this;
     }
 
+    public SelectionCreator onlyCamera(boolean onlyCamera) {
+        mSelectionSpec.onlyCamera = onlyCamera;
+        return this;
+    }
+
     /**
      * Set listener for callback immediately when user select or unselect something.
      * <p>

@@ -162,6 +162,10 @@ public class MatisseActivity extends AppCompatActivity implements
         mAlbumCollection.onCreate(this, this);
         mAlbumCollection.onRestoreInstanceState(savedInstanceState);
         mAlbumCollection.loadAlbums();
+
+        if(mSpec.onlyCamera){
+            capture();
+        }
     }
 
     @Override
@@ -198,6 +202,11 @@ public class MatisseActivity extends AppCompatActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode != RESULT_OK && mSpec.onlyCamera){
+            finish();
+            return;
+        }
 
         if (resultCode != RESULT_OK && !mSpec.isSingle)
             return;

@@ -60,7 +60,7 @@ publish {
     userOrg = 'samge720'            // bintray.com/用户名
     groupId = 'com.samge.libs'   // 项目的包名
     artifactId = 'matisse_lib'          // 上传到bintray里的Package Name(这里填什么就显示什么)
-    publishVersion = '0.5.2-beta5'  // 版本号(这里填什么就显示什么)
+    publishVersion = '0.5.2-beta6'  // 版本号(这里填什么就显示什么)
     desc = 'A well-designed local image selector for Android'
     website = 'https://github.com/Samge0/Matisse'
 }

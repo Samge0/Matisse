@@ -115,6 +115,7 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
                                             .maxWidth(500)
                                             .maxHeight(500)
                                             .isSingle(true)
+//                                            .onlyCamera(true)//是否只调用相机
                                             .forResult(REQUEST_CODE_CHOOSE);
                                     break;
                                 case R.id.dracula:
