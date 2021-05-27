@@ -1,6 +1,11 @@
 ![Image](/image/banner.png)
-
 # Matisse
+
+本项目版本信息：
+[![](https://jitpack.io/v/Samge0/Matisse.svg)](https://jitpack.io/#Samge0/Matisse)
+
+
+源项目版本信息：
 [![Build Status](https://travis-ci.org/zhihu/Matisse.svg)](https://travis-ci.org/zhihu/Matisse) [ ![Download](https://api.bintray.com/packages/samge720/libs/matisse_lib/images/download.svg) ](https://bintray.com/samge720/libs/matisse_lib/_latestVersion)
 
 Matisse is a well-designed local image and video selector for Android. You can  
